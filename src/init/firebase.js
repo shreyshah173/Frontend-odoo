@@ -8,7 +8,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPasswor
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAxPJ8J8louMizjYo9BmTryrXvmdoyLagU",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "buildify-ai.firebaseapp.com",
   projectId: "buildify-ai",
   storageBucket: "buildify-ai.appspot.com",
