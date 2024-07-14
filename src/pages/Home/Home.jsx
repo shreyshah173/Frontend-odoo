@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 const user = {
   name: "Whitney Francis",
@@ -7,11 +6,31 @@ const user = {
   mobile: "123-456-7890",
   imageUrl:
     "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  totalBooksBorrowed: 8,
+  totalOverdue: 2,
+  totalReturned: 6,
 };
 
+
 const borrowedBooks = [
-  { id: 1, title: "Book One", author: "Author One", dateBorrowed: "2024-01-01" },
-  { id: 2, title: "Book Two", author: "Author Two", dateBorrowed: "2024-02-01" },
+  {
+    id: 1,
+    title: "To Kill a Mockingbird",
+    author: "Harper Lee",
+    dateBorrowed: "2024-01-01",
+    dueDate: "2024-01-15",
+    borrowerName: "Whitney Francis",
+    status: "borrowed"
+  },
+  {
+    id: 2,
+    title: "1984",
+    author: "George Orwell",
+    dateBorrowed: "2024-02-01",
+    dueDate: "2024-02-15",
+    borrowerName: "Whitney Francis",
+    status: "overdue"
+  },
   // Add more books here
 ];
 
@@ -183,25 +202,52 @@ export default function Dashboard() {
               <div className="mt-6 flex flex-row space-x-4">
                 {/* Left Section */}
                 <div className="w-1/2">
-                  <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
-                    <img className="h-32 w-32 rounded-full" src={user.imageUrl} alt="" />
-                    <h2 className="mt-4 text-xl font-semibold text-gray-900">{user.name}</h2>
-                    <p className="text-gray-600">{user.email}</p>
-                    <p className="text-gray-600">{user.mobile}</p>
+                  <div className="flex justify-center bg-white p-6 rounded-lg shadow-md">
+                    {/* Profile Photo Section (Leftmost) */}
+                    <div className="flex-none mr-8">
+                      <img className="h-32 w-32 rounded-full" src={user.imageUrl} alt="" />
+                    </div>
+
+                    {/* Library Stats Section (Middle) */}
+                    <div className="flex-1 text-sm text-gray-600">
+                      <div className="mb-4">
+                        <h3 className="text-lg font-medium text-gray-900">Library Stats</h3>
+                        <p>Total Books Borrowed: {user.totalBooksBorrowed}</p>
+                        <p>Total Overdue: {user.totalOverdue}</p>
+                        <p>Total Returned: {user.totalReturned}</p>
+                      </div>
+                    </div>
+
+                    {/* User Info Section (Right) */}
+                    <div className="flex-none">
+                      <div>
+                        <h2 className="text-xl font-semibold text-gray-900">{user.name}</h2>
+                        <p className="text-gray-600">{user.email}</p>
+                        <p className="text-gray-600">{user.mobile}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
                 {/* Right Section */}
                 <div className="w-1/2">
                   <div className="bg-white p-6 rounded-lg shadow-md">
                     <h3 className="text-lg font-medium text-gray-900">Real-time Stats of Books Borrowed</h3>
-                    <ul className="mt-4 space-y-2 overflow-auto max-h-96">
+                    <ul className="mt-4 space-y-2 overflow-auto max-h-96 custom-scrollbar">
                       {borrowedBooks.map((book) => (
                         <li key={book.id} className="flex justify-between bg-gray-100 p-4 rounded-lg shadow-sm">
                           <div>
                             <p className="text-sm font-medium text-gray-900">{book.title}</p>
                             <p className="text-sm text-gray-600">{book.author}</p>
+                            <p className="text-sm text-gray-600 mt-2">Borrowed by: {book.borrowerName}</p>
+                            <p className="text-sm text-gray-600">Due Date: {book.dueDate}</p>
                           </div>
-                          <p className="text-sm text-gray-600">{book.dateBorrowed}</p>
+                          <div className="flex flex-col items-end">
+                            <p className={`text-sm font-medium ${book.status === 'overdue' ? 'text-red-600' : 'text-gray-600'}`}>
+                              {book.status.charAt(0).toUpperCase() + book.status.slice(1)}
+                            </p>
+                            <p className="text-sm text-gray-600">{book.dateBorrowed}</p>
+                          </div>
                         </li>
                       ))}
                     </ul>

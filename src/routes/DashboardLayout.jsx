@@ -21,6 +21,7 @@ import {
   HomeIcon,
   FolderOpenIcon
 } from "@heroicons/react/24/outline";
+import Output from "../pages/Project/Output";
 
 const user = {
   name: "Whitney Francis",
@@ -63,7 +64,14 @@ export default function DashboardLayout(props) {
     document.title = props.title;
   });
 
+  const [activeItem, setActiveItem] = useState("Home");
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleClick = (itemName) => {
+    setActiveItem(itemName);
+  };
+
 
   return (
     <>
@@ -270,11 +278,12 @@ export default function DashboardLayout(props) {
                     <a
                       href={item.href}
                       className={classNames(
-                        item.current
+                        activeItem === item.name
                           ? "bg-gray-900 text-white"
                           : "text-gray-400 hover:bg-gray-700",
                         "flex-shrink-0 inline-flex items-center justify-center h-14 w-14 rounded-lg"
                       )}
+                      onClick={() => handleClick(item.name)} // Handle click and update active item
                     >
                       <span className="sr-only">{item.name}</span>
                       <item.icon className="h-6 w-6" aria-hidden="true" />
@@ -291,6 +300,7 @@ export default function DashboardLayout(props) {
               </section>
             </main>
           </div>
+
         </div>
       </div>
     </>
