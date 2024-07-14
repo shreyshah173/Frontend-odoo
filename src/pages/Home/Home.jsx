@@ -127,7 +127,7 @@ const trendingBooks = [
     id: 3,
     title: "Educated",
     author: "Tara Westover",
-    imageURL: "https://upload.wikimedia.org/wikipedia/en/d/df/The_Silent_Patient_early_2019_UK_edition.png",
+    imageURL: "https://upload.wikimedia.org/wikipedia/en/1/1f/Educated_%28Tara_Westover%29.png",
     description: "A memoir recounting the author's journey from a survivalist family to earning a PhD from Cambridge University."
   },
   {
@@ -180,8 +180,6 @@ const trendingBooks = [
     description: "A novel exploring the complex relationship between two Irish teenagers over several years."
   }
 ];
-
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

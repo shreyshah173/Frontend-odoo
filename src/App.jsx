@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, RouterProvider ,createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, RouterProvider, createBrowserRouter } from "react-router-dom";
 import AuthProvider from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -15,21 +15,26 @@ import ProjectOutputPage from "./pages/Project/Output";
 
 // Components
 import LoadingSpinner from "./components/Loading";
+import BookForm from "./pages/Form/Form";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <DashboardLayout />,
     children: [
-      { path: "/", element: (
-        // <ProtectedRoute>
+      {
+        path: "/", element: (
+          // <ProtectedRoute>
           <HomePage />
-        // </ProtectedRoute>
-      )},
-      { path: "/project", element: (
-        //<ProtectedRoute>
+          // </ProtectedRoute>
+        )
+      },
+      {
+        path: "/project", element: (
+          //<ProtectedRoute>
           <ProjectPage />
-        //</ProtectedRoute>
-      )},
+          //</ProtectedRoute>
+        )
+      },
     ],
   },
   {
@@ -46,6 +51,10 @@ const router = createBrowserRouter([
     element: <LoginPage />
   },
   {
+    path: "/form",
+    element: <BookForm />
+  },
+  {
     path: "/project/create",
     element: (
       <ProtectedRoute>
@@ -60,7 +69,7 @@ const router = createBrowserRouter([
         <ProjectOutputPage />
       </ProtectedRoute>
     )
-  
+
   }
 ]);
 
@@ -74,15 +83,15 @@ export default () => {
   //   }, 0);
   // }, []);
 
-  
+
   return (
     <>
-    {loading ? (<LoadingSpinner />) : (
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>)
+      {loading ? (<LoadingSpinner />) : (
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>)
 
-    }
+      }
     </>
   );
 };
