@@ -12,8 +12,6 @@ const user = {
 const borrowedBooks = [
   { id: 1, title: "Book One", author: "Author One", dateBorrowed: "2024-01-01" },
   { id: 2, title: "Book Two", author: "Author Two", dateBorrowed: "2024-02-01" },
-  { id: 2, title: "Book Two", author: "Author Two", dateBorrowed: "2024-02-01" },
-  { id: 4, title: "Book Two", author: "Author Two", dateBorrowed: "2024-02-01" },
   // Add more books here
 ];
 
