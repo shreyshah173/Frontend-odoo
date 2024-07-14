@@ -22,6 +22,6 @@ export default {
   },
   darkMode: 'selector',
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'), require('tailwind-scrollbar')
   ],
 }
